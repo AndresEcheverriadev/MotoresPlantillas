@@ -4,16 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
     <title>Formulario de Ingreso de producto</title>
+    <script>
+        function myThumb() {
+            document.getElementById("imgThumb").src = document.getElementById("inputIMG").value
+        };
+    </script>
 </head>
 <body>
-    <h2>Ingrese producto</h2>
-    <form action="api/productos/guardar" method="post">
-        title: <input type="text" name="title">
-        price: <input type="number" name="price">
-        thumbnail: <input type="text" name="thumbnail">
-        <button>Agregar</button>
-    </form>
-    
+    <div class="formContainer">
+        <h2>Ingrese su producto</h2>
+        <form class="form" action="api/productos/guardar" method="post">
+            <div class="input"><label for="title">Title:</label><input class="inputSpace" type="text" name="title"></div>
+            <div class="input"><label for="price">Price:</label><input class="inputSpace" type="number" name="price"></div>
+            <div class="input"><label for="thumbnail">Thumbnail:</label><input id="inputIMG" onchange="myThumb();" class="inputSpace" type="text" name="thumbnail"></div>
+            <div class="thumbContainer"><img id="imgThumb" src="#" alt=""> </div>
+            <div class="button"><button>Agregar</button></div>
+        </form>
+    </div>
 </body>
 </html>

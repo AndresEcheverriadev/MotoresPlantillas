@@ -1,0 +1,38 @@
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.thumbContainer img {
+    width: 200px;
+    height: auto;
+
+}
+
+.input {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.inputSpace {
+    width: 500px;
+}
+

@@ -6,6 +6,7 @@ const port = 8080;
 const server = app.listen(port, () => {
     console.log(`Servidor corriendo en puerto ${port}`)
 }); 
+server.on('error', error => console.log(`Error en servidor ${error}`))
 
 const productos = [
     {
@@ -55,7 +56,7 @@ router.get('', (req,res) => {
 router.get('/:id', (req,res) => {
     const productofiltrado = productos.filter(prod => JSON.stringify(prod.id) === req.params.id);
     if(productofiltrado.length == 0) {
-        res.json('Producto no existe');
+        res.json('Producto no encontrado');
     }
     else {
         res.json(productofiltrado);
@@ -64,7 +65,8 @@ router.get('/:id', (req,res) => {
 ); 
 
 router.post('/guardar', (req,res) => {
-    let newID = productos.length+1;
+    const lastItem = productos[productos.length-1]
+    let newID = lastItem.id+1;
     productos.push({title: req.body.title,
         price: req.body.price,
         thumbnail: req.body.thumbnail,
@@ -99,6 +101,6 @@ router.delete('/borrar/:id', (req,res) => {
 const nuevo = {
     "title":'iPod Shuffle',
     "price" : 500,
-    "thumbnail": 'https://www.iconfinder.com/icons/2041366/apple_ipod_mp3_music_shuffle_icon',
+    "thumbnail": 'https://cdn4.iconfinder.com/data/icons/apple-products-2026/512/iPod_Shuffle_Pink-512.png',
     "id": 2
 };
