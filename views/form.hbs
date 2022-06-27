@@ -1,0 +1,11 @@
+<div class="formContainer">
+    <h2 class="title">Ingrese su producto</h2>
+        <form class="form" action="/productos" method="post">
+            <div class="input"><label for="title">Nombre:</label><input class="inputSpace" type="text" name="title"></input></div>
+            <div class="input"><label for="price">Precio:</label><input class="inputSpace" type="number" name="price"></input></div>
+            <div class="input"><label for="thumbnail">Foto URL:</label><input id="inputIMG" onchange="myThumb();" class="inputSpace" type="text" name="thumbnail"></input></div>
+            <div class="thumbContainer"><img id="imgThumb" src="#" alt=""></img></div>
+            <div class="button"><button class="css-button-sliding-to-top--blue">Agregar</button></div>
+        </form>
+    <a href="/productos"><button>Ver productos</button></a>
+</div>
