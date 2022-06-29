@@ -69,18 +69,62 @@ body {
     outline: none;
     border-radius: 5px;
     z-index: 0;
+    background: #2c0b8e;
+    overflow: hidden;
+    border: 2px solid #fff;
+    color: #fff;
+    margin: 20px;
+}
+
+.css-button-sliding-to-top--blue2 {
+    min-width: 130px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    z-index: 0;
     background: #fff;
     overflow: hidden;
     border: 2px solid #2c0b8e;
     color: #2c0b8e;
+    margin: 20px;
   }
+
   .css-button-sliding-to-top--blue:hover {
+    color: #2c0b8e;
+  }
+
+  .css-button-sliding-to-top--blue2:hover {
     color: #fff;
   }
+
   .css-button-sliding-to-top--blue:hover:after {
     height: 100%;
   }
+
+  .css-button-sliding-to-top--blue2:hover:after {
+    height: 100%;
+  }
+  
   .css-button-sliding-to-top--blue:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    transition: all 0.3s ease;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    width: 100%;
+    background: #fff;
+  }
+
+  .css-button-sliding-to-top--blue2:after {
     content: "";
     position: absolute;
     z-index: -1;
