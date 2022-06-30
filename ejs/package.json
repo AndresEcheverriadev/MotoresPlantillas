@@ -2,9 +2,7 @@
   "dependencies": {
     "ejs": "^3.1.8",
     "express": "^4.18.1",
-    "express-handlebars": "^6.0.6",
-    "nodemon": "^2.0.16",
-    "pug": "^3.0.2"
+    "nodemon": "^2.0.16"
   },
   "scripts": {
     "start": "nodemon src/server.js",
@@ -16,14 +14,14 @@
   "main": "server.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AndresEcheverriadev/APIRestful.git"
+    "url": "git+https://github.com/AndresEcheverriadev/MotoresPlantillas.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/AndresEcheverriadev/APIRestful/issues"
+    "url": "https://github.com/AndresEcheverriadev/MotoresPlantillas/issues"
   },
-  "homepage": "https://github.com/AndresEcheverriadev/APIRestful#readme",
+  "homepage": "https://github.com/AndresEcheverriadev/MotoresPlantillas#readme",
   "description": ""
 }
