@@ -1,0 +1,21 @@
+extends main
+
+block inputforma 
+    .formContainer
+        h2.title Ingrese su producto
+        form.form(action='/productos' method='post')
+            .input
+                label(for='title') Nombre:
+                input.inputSpace(type='text' name='title')
+            .input
+                label(for='price') Precio:
+                input.inputSpace(type='number' name='price')
+            .input
+                label(for='thumbnail') Foto URL:
+                input#inputIMG.inputSpace(onchange='myThumb();' type='text' name='thumbnail')
+            .thumbContainer
+                img#imgThumb(src='#' alt='')
+            .button
+                button.css-button-sliding-to-top--blue Agregar
+        a(href='/productos')
+            button.css-button-sliding-to-top--blue2 Ver productos
