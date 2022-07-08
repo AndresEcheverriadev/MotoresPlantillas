@@ -1,4 +1,4 @@
-class Productos {
+class Mesagges {
     constructor() {
       this.elements = [];
     }
@@ -48,4 +48,4 @@ class Productos {
     }
   }
 
-  export { Productos };
+  export { Mesagges };

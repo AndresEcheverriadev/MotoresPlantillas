@@ -1,79 +1,80 @@
-import express,{ Router } from 'express'
-import handlebars from "express-handlebars";
-import { Productos } from './Api.js'
+import express from 'express'
+import { Server as HttpServer } from "http";
+import { Server as IOServer } from "socket.io";
+import { Mesagges } from './MesaggesSystem.js'
+import { Productos } from './Filesystem.js'
 
+const apiMensajes = new Mesagges();
+const apiProductos = new Productos('products');
 const app = express();
+const httpServer = new HttpServer(app);
+const io = new IOServer(httpServer);
 const port = 8080;
-const routerProductos = Router();
-const productNotFound = 'Producto no encontrado';
-const apiProductos = new Productos();
+app.use(express.static('public'));
 
-app.engine(
-    "hbs",
-    handlebars.engine({
-      extname: ".hbs",
-      defaultLayout: "main.hbs",
-    })
-);
-app.set("view engine", "hbs");
-app.set("views", "../views");
-app.use(express.static('../public'));
+const getTimestamp = () => {
+    const date = new Date();
+    return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+};
 
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true}))
-app.use('/productos', routerProductos);
+io.on('connection', async (socket)=> {
+    console.log(`Cliente conectado en ${socket.id}`);
+    socket.emit("mensajes", apiMensajes.getAll());
 
-app.get("/", (req, res) => {
-    res.render('./form');
+    socket.on("mensajeNuevo", ({ email, text }) => {
+        const message = { email, text, timestamp:getTimestamp() };
+        apiMensajes.save(message);
+
+    io.sockets.emit("mensajes", apiMensajes.getAll());
+});
+
+socket.emit("products", await apiProductos.getAll());
+
+  socket.on("add-product", async (data) => {
+    const products = await apiProductos.save(data);
+
+    io.sockets.emit("products", products);
+  });
+
+});
+
+const server = httpServer.listen(port, () => {
+    console.log(`Servidor escuchando en puerto ${port}`);
+});
+
+server.on("error", (error) => {
+    console.error(`Error en el servidor ${error}`);
 });
 
 
 
 
 
-routerProductos.get("/", (req, res) => {
-    const response = apiProductos.getAll();
-  
-    if (!response) res.send({ error: productNotFound });
-  
-    res.render("productos", { productos: response });
-});
-  
-routerProductos.post("/", (req, res) => {
-    const { title, price, thumbnail } = req.body;
-  
-    apiProductos.save({ title, price, thumbnail });
-  
-    res.redirect("/");
-});
-
-
-const server = app.listen(port, () => {
-    console.log(`Servidor corriendo en puerto ${port}`)
-}); 
-server.on('error', error => console.log(`Error en servidor ${error}`))
 
 
 
-// toTestProductos   = 
-//     {
-//         title:"iPhoneX",
-//         price : 1500,
-//         thumbnail: "https://cdn4.iconfinder.com/data/icons/apple-products-2026/512/iPhone_X_home-screen-512.png",
-//     },
-//     {
-//         title:"iMac",
-//         price : 6500,
-//         thumbnail: "https://cdn4.iconfinder.com/data/icons/apple-products-2026/512/iMac-512.png",
-//     },
-//     {
-//         title:"Apple TV",
-//         price : 800,
-//         thumbnail: "https://cdn1.iconfinder.com/data/icons/apple-products-2026/512/Apple_TV__Ovladac-512.png",
-//     },
-//     {
-//         title:"Ipad",
-//         price : 1700,
-//         thumbnail: "https://cdn4.iconfinder.com/data/icons/apple-products-2026/512/iPad_White_Front-512.png",
-//     }
+
+
+
+
+
+// app.use(express.json());
+// app.use(express.urlencoded({extended: true}))
+
+// app.get("/", (req, res) => {
+//     res.render('./form');
+//     const response = apiProductos.getAll();
+  
+//     if (!response) res.send({ error: productNotFound });
+  
+//     res.render("productos", { productos: response });
+// });
+
+
+
+
+
+
+
+

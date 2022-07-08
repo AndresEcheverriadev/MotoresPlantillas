@@ -1,10 +1,21 @@
 body {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
     padding: 20px;
-    gap: 100px;
+    gap: 10px;
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+    background-color:darkgrey;
+}
+
+.bodyContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
 }
 
 .formContainer {
@@ -28,7 +39,6 @@ body {
 
 .form {
     display: flex;
-    flex-direction: column;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -55,11 +65,83 @@ body {
     width: 500px;
 }
 
+.formContainerMesagges {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    height:100%;
+    background-color:#2c0b8e;
+    border-style: solid;
+    border-color: transparent;
+    border-width: 2px;
+    border-radius: 10px;
+    padding: 30px;
+    gap: 20px;
+}
+
+.titleMesagges {
+    color:#fff;
+}
+
+.formMesagges {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 75%;
+    height: auto;
+}
+
+.containerNombreBtn {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.inputMsgNombre {
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    border-style: solid;
+    border-color: transparent;
+    border-width: 2px;
+    border-radius: 5px;
+}
+
+.inputMsg {
+    display: flex;
+    flex-direction: row;
+    width: 500px;
+    height: auto;
+    justify-content: space-between;
+    align-items: center;
+    border-style: solid;
+    border-color: transparent;
+    border-width: 2px;
+    border-radius: 5px;
+}
+
+#mesaggesWall {
+    color: #fff;
+    border-style: solid;
+    border-color:#fff;
+    border-width: 2px;
+    border-radius: 5px;
+    padding: 10px;
+}
 
 .css-button-sliding-to-top--blue {
     min-width: 130px;
     height: 40px;
-    color: #fff;
     padding: 5px 10px;
     font-weight: bold;
     cursor: pointer;
@@ -70,9 +152,9 @@ body {
     border-radius: 5px;
     z-index: 0;
     background: #2c0b8e;
+    color: #fff;
     overflow: hidden;
     border: 2px solid #fff;
-    color: #fff;
     margin: 20px;
 }
 
@@ -97,6 +179,8 @@ body {
   }
 
   .css-button-sliding-to-top--blue:hover {
+    background-color:#fff;
+    border: 2px solid #2c0b8e;
     color: #2c0b8e;
   }
 
